@@ -1,0 +1,167 @@
+### Workflow Rules
+
+#### When to Check These Rules
+- Before starting any new task
+- When making changes to code
+- Before committing changes
+- When creating new files
+- When responding to user requests
+- When handling sensitive data
+- Before deploying to production
+
+#### Must-Check Items
+- [ ] Git status checked
+- [ ] All modified files reviewed
+- [ ] Commit message follows format
+- [ ] Changes verified after commit
+- [ ] Relevant rule files reviewed for the task
+- [ ] No sensitive data is committed
+- [ ] Tests are passing
+- [ ] Code review completed if required
+
+#### Common Mistakes to Avoid
+- Skipping git status check
+- Not reviewing all modified files
+- Committing without confirmation
+- Not following the step-by-step process
+- Not checking relevant rules before starting a task
+- Using vague commit messages
+- Including multiple unrelated changes in one commit
+- Committing sensitive data
+- Skipping code review when required
+
+#### Step-by-Step Process
+
+##### Before Making Changes
+1. Check git status
+2. Review relevant rule files
+3. List files to be modified
+4. Get confirmation before proceeding
+5. Check for sensitive data handling requirements
+
+##### During Changes
+1. Follow established patterns
+2. Document rationale for deviations
+3. Review existing code before adding new patterns
+4. Handle sensitive data appropriately
+5. Write tests for new functionality
+
+##### After Making Changes
+1. Check git status
+2. List all modified files
+3. Verify no sensitive data is included
+4. Run tests
+5. Propose commit message
+6. Get confirmation
+7. Execute commit
+8. Verify success
+
+#### Git Commit Guidelines
+
+### Git Command Rules
+- Non-destructive read-only commands (git status, cat, ls, etc.) can be executed automatically without approval
+- Any command that modifies files, stages changes, or commits requires explicit approval
+- Always explain the purpose of the command before executing it
+- Always add all modified files when committing changes
+- Never selectively add files unless explicitly requested
+- Use `git add .` as the default command for staging changes
+- Only use selective file addition when specifically directed by the user
+- Document any exceptions to this rule in the commit message
+
+##### Message Format
+- Format: `[Verb] [Brief description]` for each distinct action
+- Standard Verbs: Add, Fix, Update, Remove, Refactor
+- Description: Clear, concise, present tense
+- Use git diff to determine the changes and summarize each distinct action
+- Each file change or major functional change should have its own action message
+- Multiple actions should be combined into a single line using commas
+- Order actions by their impact (major changes first)
+
+##### Example Messages
+✅ Correct:
+```
+[Add] Login feature, password reset functionality
+[Fix] Button alignment in login form
+[Refactor] Authentication service to use JWT
+[Update] User profile form validation
+[Remove] Deprecated API endpoint
+```
+
+❌ Incorrect:
+- "Fixed stuff"
+- "Updated things"
+- "Changes"
+- "WIP"
+- "More changes"
+- "Fix security issue" (too vague)
+- Using newlines in commit messages
+- Using \n for line breaks
+
+##### Multiple Action Guidelines
+- Review git diff to identify distinct changes
+- Group related changes under a single action when appropriate
+- Separate unrelated changes into different actions
+- Consider the impact and scope of each change
+- Use the most specific verb that describes the change
+- Maintain chronological order of changes when logical
+- Combine multiple actions into a single line using commas
+
+##### Example of Multiple Actions
+```
+[Add] New user profile page, profile image upload functionality
+[Refactor] User model to support profile images
+[Update] User controller to handle image uploads
+[Fix] Image validation in profile form
+[Remove] Old profile image storage method
+```
+
+#### Sensitive Data Handling
+
+##### What to Check For
+- API keys and secrets
+- Passwords and credentials
+- Personal identifiable information
+- Financial data
+- Environment variables
+- Configuration files
+
+##### Best Practices
+- Use environment variables
+- Never commit .env files
+- Use secure credential storage
+- Follow data encryption standards
+- Implement proper access controls
+- Log sensitive data access
+
+#### Examples of Good Workflow
+
+✅ Correct:
+- "Let me check the git status first"
+- "I see we modified these files: [list]"
+- "I suggest this commit message: [message]"
+- "Before proceeding, I should check the [specific] rules"
+- "I'll verify there's no sensitive data in these changes"
+- "Let me run the tests before committing"
+
+❌ Incorrect:
+- Jumping straight to commit
+- Not checking all modified files
+- Skipping confirmation steps
+- Not reviewing relevant rules
+- Ignoring sensitive data checks
+- Skipping test runs
+
+#### Related Rules
+- Frontend rules for interface changes
+- Backend rules for model/controller changes
+- Security rules for sensitive data
+
+#### Validation Checklist
+- [ ] All steps followed in order
+- [ ] All relevant rules checked
+- [ ] All confirmations received
+- [ ] All changes verified
+- [ ] Commit message properly formatted
+- [ ] No sensitive data included
+- [ ] Tests are passing
+- [ ] Code review completed if required
