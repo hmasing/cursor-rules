@@ -1,0 +1,127 @@
+### Frontend Development Rules
+
+#### When to Check These Rules
+- When working on any frontend code
+- When creating or modifying components
+- When implementing new UI features
+- When working with templates
+- When adding or modifying styles
+
+#### Must-Check Items
+- [ ] Using correct icon implementation
+- [ ] Following TailwindCSS conventions
+- [ ] Using appropriate component structure
+- [ ] Template logic is properly organized
+- [ ] Styles follow utility-first approach
+
+#### Common Mistakes to Avoid
+- Using raw SVGs instead of humicon helper
+- Creating new components when existing ones suffice
+- Mixing presentation and business logic
+- Using inline styles
+- Duplicating component functionality
+
+#### Visual Elements
+
+##### Icons
+- Use the `humicon` helper for all icons
+- Use heroicons as the base icon set
+- Custom icons go in app/assets/images/icons
+- Icon helper parameters: name (required), class, size, aria
+- Example: `= humicon 'trash', class: 'h-4 w-4', aria: { label: 'Delete' }`
+
+##### Styling
+- Use TailwindCSS exclusively
+- Document any custom classes in Tailwind config
+- Avoid inline styles
+- Follow Tailwind's utility-first approach
+- Group related utilities with @apply when repeated
+
+#### Component Architecture
+
+##### Organization
+- Use View Components over partials
+- Location: app/frontend/components
+  - Generic: widget/ subdirectory
+  - Domain-specific: project-specific subdirectories
+- Search for existing components before creating new ones
+- Justify new components if none exist
+
+##### Component Structure
+- Separate presentation from logic
+- Keep components focused and single-purpose
+- Use proper naming conventions
+- Document complex components
+- Include examples in component files
+
+#### Template Guidelines
+
+##### Structure
+- Use consistent indentation
+- Group related elements
+- Keep templates DRY
+- Use proper HAML syntax
+- Leverage helper methods
+
+##### Presentation Logic
+- Keep complex logic in component classes
+- Use presenters for view-specific formatting
+- Avoid business logic in templates
+- Cache expensive operations
+- Use proper data loading patterns
+
+### HAML Class Attributes Rules
+- Never use arbitrary values (square brackets) directly in HAML class attributes
+- For Tailwind classes, use one of these two approaches:
+  1. Define custom classes in Tailwind config and reference them directly:
+     ```haml
+     .grid.grid-cols-service-provider
+     ```
+  2. Use HAML's attribute syntax with curly braces for dynamic classes:
+     ```haml
+     .grid{ class: "grid-cols-[#{dynamic_value}]" }
+     ```
+- When combining multiple classes, use HAML's class attribute syntax:
+  ```haml
+  .base-class{ class: "additional-class" }
+  ```
+
+#### Examples
+
+✅ Correct Component:
+```ruby
+# app/components/widget/button_component.rb
+class Widget::ButtonComponent < ViewComponent::Base
+  def initialize(label:, variant: :primary)
+    @label = label
+    @variant = variant
+  end
+end
+```
+
+✅ Correct Template:
+```haml
+.flex.items-center.gap-2
+  = humicon 'check', class: 'h-4 w-4'
+  = label
+```
+
+❌ Incorrect:
+- Raw SVG usage
+- Inline styles
+- Business logic in templates
+- Duplicated components
+- Mixed concerns
+
+#### Related Rules
+- HAML rules for syntax details
+- Backend rules for data patterns
+- Workflow rules for process
+
+#### Validation Checklist
+- [ ] Icons use humicon helper
+- [ ] Styles follow Tailwind patterns
+- [ ] Components are properly organized
+- [ ] Templates are clean and focused
+- [ ] Logic is appropriately separated
+- [ ] Documentation is complete
