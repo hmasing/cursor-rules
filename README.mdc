@@ -1,0 +1,89 @@
+# Cursor User Rules
+
+These rules, effective as of April 30, 2025, guide Cursor in editing and managing code across any programming language or framework to ensure high-quality, consistent development practices.
+
+### General Coding Practices
+- Favor small, targeted changes to a single file or feature. If a change spans multiple files or modules, prompt for approval, describing the scope and rationale.
+- Write clear, maintainable code with self-documenting function signatures (e.g., named arguments or options).
+- Create small, single-purpose functions, avoiding large or complex code blocks.
+- Handle edge cases and errors explicitly with appropriate logging and user-friendly messages.
+
+### Code Organization
+- **Alphabetizing Functions in a Class/Module**:
+  - Group and alphabetize instance functions first, followed by static/class functions in separate sections.
+  - Within each group, sort functions alphabetically by name.
+  - Place private/protected functions after public ones within their group, also alphabetized.
+  - Use section comments (e.g., `# Instance Functions`, `# Static Functions`) to separate groups.
+- **Reorganizing a Class/Module**:
+  - Structure classes/modules in this order, separated by a blank line and a section comment (e.g., `# Constants`):
+    1. Constants (alphabetized)
+    2. Properties or configurations (grouped by purpose)
+    3. Static/class functions (grouped by functionality, alphabetized within groups)
+    4. Instance functions (grouped by functionality, alphabetized within groups)
+  - Skip sections for absent elements without adding empty comments.
+  - Use consistent comment format: `# [Section Name]` with a single space before and after.
+
+### Project Rules
+Always follow the rules defined in the .cursor/rules directory if they exist, specifically:
+- workflow-rules.mdc for all workflow-related tasks
+- frontend-rules.mdc for frontend-related tasks
+- backend-rules.mdc for backend-related tasks
+
+### Git Workflow
+- Always check git status before making changes
+- List all modified files before committing
+- Follow the commit message format: `[Verb] [Brief description]`
+- Never commit sensitive data (API keys, credentials, etc.)
+- Run tests before committing
+- Get explicit approval before executing any git commands
+
+### Error Handling
+- Log errors with appropriate context and severity
+- Include user-friendly error messages for end users
+- Document error recovery procedures
+- Handle edge cases explicitly
+- Use appropriate error types/classes
+
+### Testing
+- Write tests for new functionality
+- Update tests when modifying existing code
+- Ensure tests are independent and repeatable
+- Include both unit and integration tests where appropriate
+- Document test coverage requirements
+
+### Documentation
+- Document public APIs and interfaces
+- Include usage examples in documentation
+- Keep README files up to date
+- Document configuration options
+- Include setup instructions
+
+### Security
+- Never hardcode sensitive information
+- Use environment variables for configuration
+- Validate all user input
+- Follow the principle of least privilege
+- Keep dependencies up to date
+
+### Performance
+- Optimize database queries
+- Minimize network requests
+- Use appropriate caching strategies
+- Profile code before optimization
+- Document performance requirements
+
+### Code Review
+- Request review for significant changes
+- Document rationale for complex decisions
+- Address review comments promptly
+- Keep PRs focused and manageable
+- Include testing instructions in PR descriptions
+
+### System Commands
+- Prompt for confirmation before executing any system commands (e.g., build tools, package managers) or running scripts/apps, including the exact command and its purpose.
+- Do not execute commands automatically, even in automated workflows, without explicit approval.
+
+### Additional Instructions
+- Include brief comments explaining the purpose of each file or major code block.
+- If unsure about a requirement (e.g., whether a change is "small" or a suitable component exists), prompt for clarification.
+- Assume access to the project directory to check for existing code or configurations, but prompt for clarification if needed.
