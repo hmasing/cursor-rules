@@ -1,0 +1,114 @@
+# Backend Development Rules
+
+## When to Check These Rules
+- When working on models or controllers
+- When writing database queries or migrations
+- When implementing background jobs
+- When creating or modifying API endpoints
+- When handling data processing or business logic
+
+## Code Style
+- Follow RuboCop Rails conventions
+- Use named parameters over positional parameters
+- Keep methods small and focused
+- Use proper naming conventions
+- Document complex methods
+
+## Class Definitions
+- Use semicolons to join class namespaces together (e.g., `class Marketing::BuyflowUrlBuilder` instead of `module Marketing; class BuyflowUrlBuilder`)
+- This makes the namespace hierarchy clearer and more concise
+- Example:
+  ```ruby
+  # Good
+  class Marketing::BuyflowUrlBuilder
+    # ...
+  end
+
+  # Bad
+  module Marketing
+    class BuyflowUrlBuilder
+      # ...
+    end
+  end
+  ```
+
+## Common Mistakes to Avoid
+- Using positional parameters instead of named parameters
+- Creating N+1 queries
+- Not using eager loading when needed
+- Mixing business logic in controllers
+- Not handling errors properly
+- Using ActiveJob instead of Sidekiq
+- Not implementing proper validation
+- Not using appropriate caching strategies
+- Not following RESTful conventions
+- Not documenting complex methods
+
+## Database Optimization
+- Use includes for eager loading
+- Avoid N+1 queries
+- Follow ActiveRecord best practices
+- Use appropriate indexes
+- Optimize complex queries
+- Use counter caches when needed
+
+## Background Jobs
+- Use Sidekiq exclusively
+- Location: app/sidekiq
+- Never use ActiveJob or app/jobs
+- Follow Sidekiq best practices
+- Implement proper error handling
+- Use appropriate retry strategies
+
+## API Development
+- Follow RESTful conventions
+- Use proper HTTP methods
+- Implement proper error responses
+- Use versioning when needed
+- Document API endpoints
+- Handle authentication properly
+
+## Data Processing
+- Keep business logic in models
+- Use service objects for complex operations
+- Implement proper validation
+- Use appropriate caching
+- Handle edge cases
+- Log important operations
+
+## Examples
+
+✅ Correct:
+```ruby
+# Using named parameters
+def create_user(name:, email:, role: :user)
+  # ...
+end
+
+# Proper eager loading
+User.includes(:posts).where(active: true)
+
+# Sidekiq job
+class ProcessUserJob
+  include Sidekiq::Job
+  
+  def perform(user_id)
+    # ...
+  end
+end
+```
+
+❌ Incorrect:
+- Positional parameters
+- N+1 queries
+- Business logic in controllers
+- ActiveJob usage
+- Poor error handling
+
+## Validation Checklist
+- [ ] Code follows RuboCop conventions
+- [ ] Database queries are optimized
+- [ ] Background jobs use Sidekiq
+- [ ] Error handling is implemented
+- [ ] Business logic is properly separated
+- [ ] API endpoints are properly documented
