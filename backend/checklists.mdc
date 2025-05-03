@@ -1,0 +1,58 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/models/**/*,app/controllers/**/*,app/services/**/*,app/workers/**/*,app/jobs/**/*,lib/**/*,*.rb,*.rake
+# @description: Backend development checklists for before, during, and after development phases.
+
+# Backend Development Checklists
+
+## New API Endpoint Checklist
+- [ ] Define clear API contract
+- [ ] Implement proper error handling
+- [ ] Add input validation
+- [ ] Include proper documentation
+- [ ] Add rate limiting if needed
+- [ ] Implement proper authentication
+- [ ] Add request logging
+- [ ] Test edge cases
+- [ ] Add performance monitoring
+- [ ] Include proper response codes
+
+## Database Migration Checklist
+- [ ] Document current schema
+- [ ] Plan migration strategy
+- [ ] Create rollback plan
+- [ ] Test on staging environment
+- [ ] Verify data integrity
+- [ ] Check performance impact
+- [ ] Update documentation
+- [ ] Test edge cases
+- [ ] Monitor during deployment
+- [ ] Verify backup procedures
+
+## Service Refactor Checklist
+- [ ] Document current behavior
+- [ ] Check for dependencies
+- [ ] Plan migration strategy
+- [ ] Update tests
+- [ ] Verify error handling
+- [ ] Test all states
+- [ ] Check performance
+- [ ] Update documentation
+- [ ] Test edge cases
+- [ ] Plan deployment strategy
+
+## Security Update Checklist
+- [ ] Review security requirements
+- [ ] Check for vulnerabilities
+- [ ] Update dependencies
+- [ ] Verify authentication
+- [ ] Check authorization
+- [ ] Review logging
+- [ ] Test security measures
+- [ ] Update documentation
+- [ ] Verify compliance
+- [ ] Test edge cases

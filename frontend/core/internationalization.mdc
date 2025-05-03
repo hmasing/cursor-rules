@@ -1,0 +1,142 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Frontend Internationalization Rules
+
+## Related Rules
+- @frontend/core/accessibility.mdc for RTL support and accessibility
+- @frontend/core/performance.mdc for bundle size optimization
+- @frontend/core/error-handling.mdc for localized error messages
+
+## Core Principles
+1. **Content Management**
+   - Use translation keys instead of hardcoded strings
+   - Support right-to-left (RTL) languages
+   - Handle pluralization and gender
+   - Support date/time formatting
+   - Support number formatting
+   - Handle text direction
+
+2. **Implementation Guidelines**
+   - Use i18n library (e.g., i18next)
+   - Implement language detection
+   - Support language switching
+   - Handle fallback languages
+   - Manage translation files
+   - Support dynamic content
+
+## Implementation Patterns
+
+### Translation Setup
+```javascript
+// Example: i18next configuration
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          welcome: 'Welcome',
+          // ... other translations
+        }
+      },
+      es: {
+        translation: {
+          welcome: 'Bienvenido',
+          // ... other translations
+        }
+      }
+    },
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  });
+```
+
+### Usage in Components
+```javascript
+// Example: Using translations in React
+import { useTranslation } from 'react-i18next';
+
+function Welcome() {
+  const { t } = useTranslation();
+  return <h1>{t('welcome')}</h1>;
+}
+```
+
+### Pluralization
+```javascript
+// Example: Pluralization
+const translations = {
+  items: {
+    one: '{{count}} item',
+    other: '{{count}} items'
+  }
+};
+
+// Usage
+t('items', { count: 1 }); // "1 item"
+t('items', { count: 5 }); // "5 items"
+```
+
+## RTL Support
+- Use CSS logical properties
+- Implement RTL-specific styles
+- Test with RTL languages
+- Handle bidirectional text
+- Support RTL layouts
+
+## Date/Time Formatting
+- Use locale-aware formatting
+- Support multiple time zones
+- Handle date ranges
+- Format relative time
+- Support calendar systems
+
+## Number Formatting
+- Format currency
+- Format percentages
+- Format decimals
+- Format large numbers
+- Support different numbering systems
+
+## Content Organization
+- Separate translation files by language
+- Group related translations
+- Use namespaces for large applications
+- Maintain translation keys
+- Document translation context
+
+## Performance Considerations
+- Lazy load translations
+- Optimize bundle size
+- Cache translations
+- Preload common languages
+- Handle missing translations
+
+## Testing Requirements
+- Test with multiple languages
+- Verify RTL support
+- Check date/time formatting
+- Verify number formatting
+- Test language switching
+- Check fallback behavior
+
+## Common Mistakes to Avoid
+- Hardcoding strings
+- Not supporting RTL
+- Not handling pluralization
+- Not formatting dates/times
+- Not formatting numbers
+- Not testing translations
+- Not maintaining translation files
+- Not handling missing translations
+- Not supporting language switching
+- Not optimizing performance

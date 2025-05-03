@@ -1,0 +1,111 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Testing Rules
+
+## Related Rules
+- @frontend-rules.mdc for general frontend guidelines
+- @frontend/core/state-management.mdc for state testing
+- @frontend/core/performance.mdc for performance testing
+- @frontend/core/accessibility.mdc for accessibility testing
+
+## Overview
+This document defines the rules and best practices for testing Ruby on Rails frontend applications.
+
+## Testing Principles
+
+### 1. Test Types
+- System Tests: Test complete user flows with Capybara
+- Integration Tests: Test controller actions and views
+- Feature Tests: Test specific features
+- View Tests: Test view templates
+- Accessibility Tests: Test a11y compliance
+
+### 2. Test Organization
+- Group tests by feature
+- Use descriptive test names
+- Follow RSpec best practices
+- Keep tests independent
+- Maintain test isolation
+
+### 3. Test Coverage
+- Aim for meaningful coverage
+- Focus on critical paths
+- Test edge cases
+- Test error scenarios
+- Test accessibility
+
+## Implementation Guidelines
+
+### System Tests
+```ruby
+# Good
+RSpec.describe "User management", type: :system do
+  it "allows user to update their profile" do
+    sign_in user
+    visit edit_user_path(user)
+    
+    fill_in "Name", with: "New Name"
+    click_button "Update Profile"
+    
+    expect(page).to have_content "Profile updated successfully"
+    expect(page).to have_content "New Name"
+  end
+end
+
+# Bad
+RSpec.describe "Everything", type: :system do
+  it "works" do
+    # Unclear test purpose
+    # Mixed concerns
+    # No clear assertions
+  end
+end
+```
+
+### View Tests
+```ruby
+# Good
+RSpec.describe "users/show", type: :view do
+  it "displays user information" do
+    assign(:user, build_stubbed(:user, name: "John Doe"))
+    render
+    
+    expect(rendered).to have_content "John Doe"
+    expect(rendered).to have_link "Edit Profile"
+  end
+end
+```
+
+## Testing Tools
+- RSpec for testing framework
+- Capybara for system tests
+- FactoryBot for test data
+- Faker for test data generation
+- Axe for accessibility testing
+
+## Performance Testing
+- Load time testing
+- Database query testing
+- Cache effectiveness testing
+- Asset loading testing
+- Memory usage testing
+
+## Common Mistakes to Avoid
+- Not using proper test data
+- Not cleaning up test data
+- Not testing error scenarios
+- Not testing accessibility
+- Not testing edge cases
+
+## Validation Checklist
+- [ ] System tests implemented
+- [ ] Integration tests implemented
+- [ ] View tests implemented
+- [ ] Accessibility tests implemented
+- [ ] Test coverage meets requirements
+- [ ] Tests are maintainable
+- [ ] Tests are independent
+- [ ] Test data is properly managed

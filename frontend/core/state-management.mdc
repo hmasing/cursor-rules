@@ -1,0 +1,105 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend State Management Rules
+
+## Related Rules
+- @frontend-rules.mdc for general frontend guidelines
+- @frontend/core/performance.mdc for performance considerations
+- @frontend/core/testing.mdc for testing requirements
+
+## Overview
+This document defines the rules and best practices for managing state in Ruby on Rails frontend applications, primarily using Stimulus.js and Rails UJS patterns.
+
+## State Management Principles
+
+### 1. State Location
+- Use Stimulus.js controllers for component-specific state
+- Use Rails UJS for server-side state management
+- Use data attributes for DOM state
+- Use Rails session/cookies for persistent state
+- Use Rails caching for performance optimization
+
+### 2. State Organization
+- Group related state in Stimulus controllers
+- Use proper data attributes naming
+- Implement proper caching strategies
+- Use Rails partials for dynamic content
+- Follow RESTful patterns for state updates
+
+### 3. State Updates
+- Use Stimulus actions for client-side updates
+- Use Rails UJS for server-side updates
+- Implement proper error handling
+- Include loading states
+- Handle edge cases explicitly
+
+## Implementation Guidelines
+
+### Stimulus.js Controllers
+```ruby
+# Good
+class ToggleController < Stimulus::Controller
+  static targets = ["content"]
+  
+  toggle() {
+    this.contentTarget.classList.toggle("hidden")
+  }
+end
+
+# Bad
+class EverythingController < Stimulus::Controller
+  # Too many responsibilities
+  # Mixed concerns
+end
+```
+
+### Rails UJS Implementation
+```ruby
+# Good
+<%= link_to "Update", update_path, 
+    class: "btn",
+    data: { 
+      remote: true,
+      method: :patch,
+      confirm: "Are you sure?"
+    } %>
+
+# Bad
+<%= link_to "Update", update_path, 
+    class: "btn",
+    onclick: "updateEverything()" %>
+```
+
+## Performance Considerations
+- Use proper caching strategies
+- Implement proper asset precompilation
+- Use Russian Doll caching
+- Implement proper database indexing
+- Use background jobs for heavy operations
+
+## Testing Requirements
+- Test Stimulus controllers
+- Test Rails UJS interactions
+- Test error states
+- Test edge cases
+- Test state persistence
+
+## Common Mistakes to Avoid
+- Not using proper caching
+- Mixing concerns in Stimulus controllers
+- Not using Rails UJS patterns
+- Not handling loading states
+- Not implementing proper error handling
+
+## Validation Checklist
+- [ ] State is properly organized
+- [ ] Stimulus controllers are focused
+- [ ] Rails UJS patterns are followed
+- [ ] Error handling is implemented
+- [ ] Loading states are handled
+- [ ] Performance optimizations are in place
+- [ ] Tests cover all state scenarios
+- [ ] Edge cases are handled

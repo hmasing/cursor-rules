@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# @attach: agent
+# @description: General development and code review checklists. Always loaded for context.
+
+# Checklists
+
+## Overview
+This document provides an overview of all checklists used in the project. Each major module has its own specific checklists that should be followed during development.
+
+## Module Checklists
+- [Frontend Checklists](mdc:frontend/checklists.mdc)
+- [Backend Checklists](mdc:backend/checklists.mdc)
+- [Workflow Checklists](mdc:workflow/checklists.mdc)
+
+## General Development Checklist
+- [ ] Review relevant module rules
+- [ ] Check for existing similar implementations
+- [ ] Follow naming conventions
+- [ ] Add proper documentation
+- [ ] Include usage examples
+- [ ] Test edge cases
+- [ ] Verify error handling
+- [ ] Check performance impact
+- [ ] Update relevant documentation
+- [ ] Run through appropriate module-specific checklists
+
+## Code Review Checklist
+- [ ] Verify all checklists are completed
+- [ ] Check for common mistakes
+- [ ] Review error handling
+- [ ] Verify documentation
+- [ ] Check test coverage
+- [ ] Review performance considerations
+- [ ] Verify security practices
+- [ ] Check accessibility requirements
+- [ ] Review code organization
+- [ ] Verify naming conventions

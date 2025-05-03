@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+### HAML Class Attributes Rules
+
+#### When to Check These Rules
+- When writing or modifying HAML templates
+- When adding or modifying Tailwind classes
+- When working with dynamic class attributes
+
+#### Rules
+- Never use arbitrary values (square brackets) directly in HAML class attributes
+- For Tailwind classes, use one of these two approaches:
+  1. Define custom classes in Tailwind config and reference them directly:
+     ```haml
+     .grid.grid-cols-service-provider
+     ```
+  2. Use HAML's attribute syntax with curly braces for dynamic classes:
+     ```haml
+     .grid{ class: "grid-cols-[#{dynamic_value}]" }
+     ```
+- When combining multiple classes, use HAML's class attribute syntax:
+  ```haml
+  .base-class{ class: "additional-class" }
+  ```
+
+#### Common Mistakes to Avoid
+- Using raw class strings with square brackets
+- Mixing static and dynamic classes incorrectly
+- Not using proper HAML attribute syntax
+
+#### Validation Checklist
+- [ ] No direct square bracket usage in class attributes
+- [ ] Dynamic classes use proper HAML syntax
+- [ ] Custom Tailwind classes are defined in config
+- [ ] Class combinations use proper syntax

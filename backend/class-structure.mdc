@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/models/**/*,app/controllers/**/*,app/services/**/*,lib/**/*,*.rb
+# @description: Class organization and structure guidelines.
+
+# Class Structure Guidelines
+
+## Namespace Organization
+- Use semicolons to join class namespaces (e.g., `class Marketing::BuyflowUrlBuilder`)
+- Avoid nested module/class definitions
+- Keep namespace hierarchy clear and concise
+
+## Section Organization
+- Use double hash marks (##) for section headers
+- Organize sections in this order:
+  ## ASSOCIATIONS
+  ## VALIDATIONS
+  ## DELEGATIONS
+  ## PROPERTIES
+  ## CLASS METHODS
+  ## INSTANCE METHODS - PUBLIC
+  ## INSTANCE METHODS - PRIVATE
+  ## NESTED CLASSES
+
+## Method Organization
+- Alphabetize methods within each section
+- Include a blank line between methods
+- Group related methods together within sections
+- Place private/protected methods after public ones
+- Use consistent method naming conventions
+
+## Examples
+
+✅ Correct:
+```ruby
+class Marketing::BuyflowUrlBuilder
+  ## ASSOCIATIONS
+  belongs_to :campaign
+  has_many :variants
+
+  ## VALIDATIONS
+  validates :campaign_id, presence: true
+  validates :url, presence: true
+
+  ## CLASS METHODS
+  def self.find_by_campaign(campaign_id)
+    # ...
+  end
+
+  ## INSTANCE METHODS - PUBLIC
+  def generate_url
+    # ...
+  end
+
+  ## INSTANCE METHODS - PRIVATE
+  private
+
+  def validate_url_format
+    # ...
+  end
+end
+```
+
+❌ Incorrect:
+- Nested module/class definitions
+- Inconsistent section ordering
+- Mixed method visibility
+- Poor method organization

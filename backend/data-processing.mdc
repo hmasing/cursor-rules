@@ -1,0 +1,133 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/models/**/*,app/services/**/*,lib/**/*,*.rb
+# @description: Data processing and business logic guidelines.
+
+# Data Processing Guidelines
+
+## When to Check These Rules
+- When implementing business logic
+- When processing complex data operations
+- When handling data validation
+- When implementing caching strategies
+- When working with service objects
+- When logging important operations
+
+## Business Logic
+- Keep business logic in models
+- Use service objects for complex operations
+- Implement proper validation
+- Handle edge cases explicitly
+- Document complex operations
+- Use appropriate design patterns
+- Consider performance implications
+- Implement proper error handling
+
+## Service Objects
+- Use service objects for complex operations
+- Follow single responsibility principle
+- Implement proper error handling
+- Use clear, descriptive method names
+- Document service object behavior
+- Consider transaction boundaries
+- Handle edge cases explicitly
+- Implement proper logging
+
+## Caching
+- Use appropriate caching strategies
+- Consider cache invalidation
+- Implement proper cache keys
+- Handle cache misses gracefully
+- Monitor cache performance
+- Consider cache size limits
+- Implement proper cache cleanup
+- Document caching strategies
+
+## Examples
+
+✅ Correct:
+```ruby
+# Service object for complex operation
+class UserRegistrationService
+  def initialize(params)
+    @params = params
+  end
+
+  def call
+    ActiveRecord::Base.transaction do
+      user = create_user
+      send_welcome_email(user)
+      create_user_profile(user)
+      log_registration(user)
+    end
+  rescue StandardError => e
+    logger.error "Registration failed: #{e.message}"
+    raise
+  end
+
+  private
+
+  def create_user
+    User.create!(@params)
+  end
+
+  def send_welcome_email(user)
+    UserMailer.welcome_email(user).deliver_later
+  end
+
+  def create_user_profile(user)
+    UserProfile.create!(user: user)
+  end
+
+  def log_registration(user)
+    logger.info "User registered: #{user.id}"
+  end
+end
+
+# Proper caching
+class User < ApplicationRecord
+  def cached_posts
+    Rails.cache.fetch("user/#{id}/posts", expires_in: 1.hour) do
+      posts.to_a
+    end
+  end
+end
+```
+
+❌ Incorrect:
+- Business logic in controllers
+- No service objects for complex operations
+- Poor error handling
+- No proper validation
+- No caching strategy
+- No proper logging
+- No edge case handling
+- No transaction management
+
+## Common Mistakes to Avoid
+- Mixing business logic in controllers
+- Not using service objects for complex operations
+- Poor error handling
+- No proper validation
+- No caching strategy
+- No proper logging
+- No edge case handling
+- No transaction management
+- Not considering performance
+- Not documenting complex operations
+
+## Validation Checklist
+- [ ] Business logic is in models
+- [ ] Service objects are used for complex operations
+- [ ] Proper validation is implemented
+- [ ] Edge cases are handled
+- [ ] Appropriate caching is used
+- [ ] Proper logging is implemented
+- [ ] Error handling is in place
+- [ ] Performance is considered
+- [ ] Complex operations are documented
+- [ ] Transaction boundaries are proper

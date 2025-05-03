@@ -1,0 +1,75 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: agent
+# @description: Sensitive data handling guidelines. Always loaded for context.
+
+# Sensitive Data Guidelines
+
+### Sensitive Data Rules
+
+#### When to Check These Rules
+- Before committing changes
+- When handling credentials
+- When working with API keys
+- When dealing with user data
+- When configuring environments
+
+#### Rules
+##### What to Check For
+- API keys and secrets
+- Passwords and credentials
+- Personal identifiable information
+- Financial data
+- Environment variables
+- Configuration files
+
+##### Best Practices
+- Use environment variables
+- Never commit .env files
+- Use secure credential storage
+- Follow data encryption standards
+- Implement proper access controls
+- Log sensitive data access
+- Use proper key rotation
+- Implement audit logging
+- Follow least privilege principle
+
+#### Examples
+✅ Correct:
+```ruby
+# Using environment variables
+ENV['API_KEY']
+Rails.application.credentials.api_key
+
+# Secure credential storage
+Rails.application.credentials.aws[:access_key_id]
+```
+
+❌ Incorrect:
+- Hardcoded API keys
+- Committed .env files
+- Plain text passwords
+- Unencrypted sensitive data
+- Broad access permissions
+
+#### Common Mistakes to Avoid
+- Hardcoding sensitive data
+- Committing credentials
+- Not using environment variables
+- Poor access control
+- No audit logging
+- Not rotating keys
+- Not encrypting data
+
+#### Validation Checklist
+- [ ] No hardcoded credentials
+- [ ] Environment variables used
+- [ ] No .env files committed
+- [ ] Proper encryption used
+- [ ] Access controls in place
+- [ ] Audit logging implemented
+- [ ] Key rotation planned
+- [ ] Least privilege followed

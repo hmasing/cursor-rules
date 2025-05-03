@@ -1,0 +1,63 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+### Tailwind CSS Conventions
+
+#### When to Check These Rules
+- When adding or modifying styles
+- When creating new components
+- When working with custom Tailwind configurations
+
+#### Rules
+- Use TailwindCSS exclusively
+- Document any custom classes in Tailwind config
+- Avoid inline styles
+- Follow Tailwind's utility-first approach
+- Group related utilities with @apply when repeated
+- Use consistent spacing and sizing scales
+- Follow the mobile-first approach
+
+#### Examples
+✅ Correct:
+```haml
+.flex.items-center.gap-2
+  .text-sm.font-medium.text-gray-700
+    = label
+```
+
+✅ Correct Custom Class:
+```css
+/* tailwind.config.js */
+module.exports = {
+  theme: {
+    extend: {
+      gridTemplateColumns: {
+        'service-provider': 'repeat(auto-fit, minmax(250px, 1fr))',
+      }
+    }
+  }
+}
+```
+
+❌ Incorrect:
+- Using inline styles
+- Not using utility classes
+- Mixing utility and custom classes inconsistently
+- Not following mobile-first approach
+
+#### Common Mistakes to Avoid
+- Using inline styles
+- Not using utility classes
+- Inconsistent spacing/sizing
+- Not documenting custom classes
+- Not following mobile-first approach
+
+#### Validation Checklist
+- [ ] Using Tailwind utility classes
+- [ ] No inline styles
+- [ ] Custom classes documented
+- [ ] Consistent spacing/sizing
+- [ ] Mobile-first approach
+- [ ] Proper use of @apply

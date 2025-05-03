@@ -1,0 +1,91 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# @attach: auto
+# @glob: app/controllers/api/**/*,app/controllers/**/*,*.rb
+# @description: API implementation and design guidelines.
+
+# API Design Guidelines
+
+### API Design Rules
+
+#### When to Check These Rules
+- When creating new API endpoints
+- When modifying existing endpoints
+- When implementing API versioning
+- When handling API errors
+- When documenting APIs
+
+#### Rules
+- Follow RESTful conventions
+- Use proper HTTP methods
+- Implement proper error responses
+- Use versioning when needed
+- Document API endpoints
+- Handle authentication properly
+- Use proper status codes
+- Implement rate limiting
+- Consider caching strategies
+- Handle pagination
+
+#### Examples
+✅ Correct:
+```ruby
+module Api
+  module V1
+    class UsersController < ApplicationController
+      before_action :authenticate_user!
+      
+      def index
+        users = User.active
+                   .page(params[:page])
+                   .per(params[:per_page])
+        
+        render json: {
+          users: UserSerializer.new(users),
+          meta: pagination_meta(users)
+        }
+      end
+      
+      def show
+        user = User.find(params[:id])
+        render json: UserSerializer.new(user)
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: 'User not found' }, status: :not_found
+      end
+    end
+  end
+end
+```
+
+❌ Incorrect:
+- Not following REST conventions
+- Inconsistent error handling
+- No versioning
+- Poor documentation
+- No authentication
+- Wrong status codes
+
+#### Common Mistakes to Avoid
+- Not following REST conventions
+- Inconsistent error handling
+- No versioning strategy
+- Poor documentation
+- No authentication
+- Wrong status codes
+- No rate limiting
+- No caching
+
+#### Validation Checklist
+- [ ] RESTful conventions followed
+- [ ] Proper HTTP methods used
+- [ ] Error handling implemented
+- [ ] Versioning strategy in place
+- [ ] Documentation complete
+- [ ] Authentication handled
+- [ ] Proper status codes
+- [ ] Rate limiting implemented
+- [ ] Caching strategy in place
+- [ ] Pagination handled

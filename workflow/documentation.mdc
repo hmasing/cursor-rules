@@ -1,0 +1,92 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: agent
+# @description: Documentation best practices and guidelines. Always loaded for context.
+
+# Documentation Guidelines
+
+### Documentation Best Practices
+
+## Documentation Types
+- API Documentation
+- Code Comments
+- README Files
+- Architecture Diagrams
+- User Guides
+- Developer Guides
+- Release Notes
+- Troubleshooting Guides
+
+## Documentation Checklist
+- [ ] All public APIs documented
+- [ ] Code comments are clear and useful
+- [ ] README is up to date
+- [ ] Architecture is documented
+- [ ] Setup instructions are clear
+- [ ] Configuration options documented
+- [ ] Error messages are documented
+- [ ] Examples are provided
+- [ ] Version history maintained
+
+## Code Documentation
+- Document public interfaces
+- Explain complex algorithms
+- Document assumptions
+- Include usage examples
+- Note limitations
+- Document dependencies
+- Explain error handling
+- Document configuration
+
+## API Documentation
+- Document endpoints
+- List parameters
+- Show examples
+- Document responses
+- Explain error codes
+- Document authentication
+- List rate limits
+- Show versioning
+
+## README Guidelines
+- Project overview
+- Installation steps
+- Configuration options
+- Usage examples
+- Development setup
+- Testing instructions
+- Contributing guidelines
+- License information
+
+## Architecture Documentation
+- System overview
+- Component diagrams
+- Data flow
+- Integration points
+- Security measures
+- Performance considerations
+- Scaling strategy
+- Deployment process
+
+## User Documentation
+- Installation guide
+- Configuration guide
+- Usage instructions
+- Troubleshooting guide
+- FAQ section
+- Known issues
+- Support information
+- Version history
+
+## Documentation Maintenance
+- Review regularly
+- Update with changes
+- Remove obsolete content
+- Verify accuracy
+- Check links
+- Update examples
+- Review formatting
+- Validate completeness

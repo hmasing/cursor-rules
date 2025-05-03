@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+### Component Structure Rules
+
+#### When to Check These Rules
+- When creating new components
+- When modifying existing components
+- When organizing component directories
+
+#### Rules
+##### Organization
+- Use View Components over partials
+- Location: app/frontend/components
+  - Generic: widget/ subdirectory
+  - Domain-specific: project-specific subdirectories
+- Search for existing components before creating new ones
+- Justify new components if none exist
+
+##### Component Structure
+- Separate presentation from logic
+- Keep components focused and single-purpose
+- Use proper naming conventions
+- Document complex components
+- Include examples in component files
+
+#### Examples
+✅ Correct Component:
+```ruby
+# app/components/widget/button_component.rb
+class Widget::ButtonComponent < ViewComponent::Base
+  def initialize(label:, variant: :primary)
+    @label = label
+    @variant = variant
+  end
+end
+```
+
+✅ Correct Template:
+```haml
+.flex.items-center.gap-2
+  = humicon 'check', class: 'h-4 w-4'
+  = label
+```
+
+❌ Incorrect:
+- Creating new components when existing ones suffice
+- Mixing presentation and business logic
+- Duplicating component functionality
+- Not following naming conventions
+
+#### Common Mistakes to Avoid
+- Creating unnecessary components
+- Mixing concerns
+- Not reusing existing components
+- Poor component organization
+- Inconsistent naming
+
+#### Validation Checklist
+- [ ] Component is necessary and justified
+- [ ] Proper directory structure
+- [ ] Clear separation of concerns
+- [ ] Following naming conventions
+- [ ] Proper documentation
+- [ ] Examples included

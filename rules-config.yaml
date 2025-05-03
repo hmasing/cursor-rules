@@ -1,0 +1,81 @@
+# Cursor Rules Configuration
+# This file defines how each rule file should be attached and when it should be applied
+
+rules:
+  - file: .cursor/rules/README.mdc
+    attach: agent
+    description: "README.mdc: Core project documentation and general coding practices. Always loaded for context."
+    glob: []
+
+  - file: .cursor/rules/workflow-rules.mdc
+    attach: agent
+    description: "workflow-rules.mdc: Development workflow guidelines. Always loaded for context."
+    glob: []
+
+  - file: .cursor/rules/frontend-rules.mdc
+    attach: auto
+    description: "frontend-rules.mdc: Frontend development guidelines for Rails views, JavaScript, and CSS."
+    glob:
+      - "app/views/**/*"
+      - "app/javascript/**/*"
+      - "app/assets/**/*"
+      - "frontend/**/*"
+      - "*.js"
+      - "*.jsx"
+      - "*.ts"
+      - "*.tsx"
+      - "*.css"
+      - "*.scss"
+      - "*.haml"
+      - "*.erb"
+
+  - file: .cursor/rules/backend-rules.mdc
+    attach: auto
+    description: "backend-rules.mdc: Backend development guidelines for Ruby on Rails models, controllers, and services."
+    glob:
+      - "app/models/**/*"
+      - "app/controllers/**/*"
+      - "app/services/**/*"
+      - "app/workers/**/*"
+      - "app/jobs/**/*"
+      - "lib/**/*"
+      - "*.rb"
+      - "*.rake"
+
+  - file: .cursor/rules/api-documentation.mdc
+    attach: auto
+    description: "api-documentation.mdc: API documentation standards for OpenAPI/Swagger specifications."
+    glob:
+      - "public/swagger.yaml"
+      - "public/v*/openapi.yaml"
+      - "docs/api/**/*"
+      - "app/controllers/api/**/*"
+
+  - file: .cursor/rules/checklists.mdc
+    attach: agent
+    description: "checklists.mdc: General development and code review checklists. Always loaded for context."
+    glob: []
+
+# Directory-specific rules
+directories:
+  frontend:
+    attach: auto
+    glob:
+      - "app/views/**/*"
+      - "app/javascript/**/*"
+      - "app/assets/**/*"
+      - "frontend/**/*"
+
+  backend:
+    attach: auto
+    glob:
+      - "app/models/**/*"
+      - "app/controllers/**/*"
+      - "app/services/**/*"
+      - "app/workers/**/*"
+      - "app/jobs/**/*"
+      - "lib/**/*"
+
+  workflow:
+    attach: agent
+    glob: [] 

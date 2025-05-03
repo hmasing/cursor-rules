@@ -1,0 +1,59 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/**/*,lib/**/*,*.rb,*.rake
+# @description: Ruby code style guidelines and conventions.
+
+# Code Style Rules
+
+## General Guidelines
+- Follow RuboCop Rails conventions
+- Keep methods small and focused (ideally under 10 lines)
+- Use proper naming conventions
+- Document complex methods
+- Maintain consistent formatting
+
+## Parameter Usage
+- Use named parameters over positional parameters
+- Group related parameters together
+- Provide default values when appropriate
+- Document parameter types and requirements
+
+## Method Design
+- Single responsibility principle
+- Clear, descriptive method names
+- Consistent return types
+- Proper error handling
+- Appropriate method visibility
+
+## Examples
+
+✅ Correct:
+```ruby
+# Using named parameters with defaults
+def create_user(name:, email:, role: :user, metadata: {})
+  # ...
+end
+
+# Small, focused method
+def calculate_discount(subtotal:, tax_rate:)
+  subtotal * (1 + tax_rate)
+end
+
+# Well-documented complex method
+# @param [Array<Integer>] numbers List of numbers to process
+# @return [Hash] Statistics about the numbers
+def calculate_statistics(numbers)
+  # ...
+end
+```
+
+❌ Incorrect:
+- Positional parameters without clear meaning
+- Long, complex methods
+- Inconsistent naming
+- Poor documentation
+- Mixed return types

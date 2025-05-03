@@ -1,0 +1,98 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Security Rules
+
+## Related Rules
+- @frontend-rules.mdc for general frontend guidelines
+- @frontend/core/state-management.mdc for secure state handling
+- @frontend/core/testing.mdc for security testing
+
+## Overview
+This document defines the rules and best practices for maintaining security in Ruby on Rails frontend applications.
+
+## Security Principles
+
+### 1. CSRF Protection
+- Always use Rails CSRF tokens
+- Implement proper form authenticity tokens
+- Use proper HTTP methods
+- Handle CSRF errors gracefully
+- Never disable CSRF protection
+
+### 2. XSS Prevention
+- Use proper HTML escaping
+- Implement Content Security Policy (CSP)
+- Sanitize user input
+- Use proper Rails view helpers
+- Implement proper encoding
+
+### 3. Data Protection
+- Never expose sensitive data in views
+- Use proper data attributes
+- Implement proper access control
+- Use proper encryption
+- Handle sensitive data securely
+
+## Implementation Guidelines
+
+### CSRF Protection
+```ruby
+# Good
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.hidden_field :authenticity_token %>
+  # ... form fields
+<% end %>
+
+# Bad
+<%= form_with(model: @user, local: true, skip_csrf: true) do |f| %>
+  # ... form fields
+<% end %>
+```
+
+### XSS Prevention
+```ruby
+# Good
+<%= sanitize @user.bio %>
+<%= h @user.name %>
+
+# Bad
+<%= raw @user.bio %>
+<%= @user.name.html_safe %>
+```
+
+## Security Headers
+- Implement Content Security Policy
+- Use X-Frame-Options
+- Use X-XSS-Protection
+- Use X-Content-Type-Options
+- Use Strict-Transport-Security
+
+## Testing Requirements
+- Test CSRF protection
+- Test XSS vulnerabilities
+- Test data exposure
+- Test access control
+- Test input validation
+
+## Common Mistakes to Avoid
+- Disabling CSRF protection
+- Using raw/unsafe HTML
+- Exposing sensitive data
+- Not implementing proper access control
+- Not sanitizing user input
+- Not using proper encryption
+- Not handling sensitive data securely
+- Not implementing proper security headers
+
+## Validation Checklist
+- [ ] CSRF protection implemented
+- [ ] XSS prevention in place
+- [ ] Data protection implemented
+- [ ] Security headers configured
+- [ ] Tests cover security scenarios
+- [ ] Access control implemented
+- [ ] Input validation in place
+- [ ] Sensitive data handled securely

@@ -1,0 +1,112 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Frontend Accessibility Rules
+
+## Related Rules
+- @frontend-rules.mdc for general frontend guidelines
+- @frontend/core/performance.mdc for accessibility performance
+- @frontend/core/testing.mdc for accessibility testing
+
+## Overview
+This document defines the rules and best practices for ensuring web accessibility (a11y) in Ruby on Rails applications.
+
+## Accessibility Principles
+
+### 1. Semantic HTML with Rails Helpers
+- Use proper Rails form helpers
+- Implement proper heading hierarchy
+- Use semantic Rails view helpers
+- Ensure proper document structure
+- Use proper label associations
+
+### 2. ARIA Implementation
+- Use proper Rails UJS attributes
+- Implement proper roles
+- Use ARIA live regions for dynamic content
+- Ensure proper ARIA states
+- Maintain ARIA relationships
+
+### 3. Keyboard Navigation
+- Ensure all interactive elements are keyboard accessible
+- Implement proper focus management
+- Maintain logical tab order
+- Provide visible focus indicators
+- Handle keyboard shortcuts
+
+## Implementation Guidelines
+
+### Rails Form Helpers
+```ruby
+# Good
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :email, "Email Address" %>
+  <%= f.email_field :email, aria: { describedby: "email-help" } %>
+  <span id="email-help">Enter your email address</span>
+<% end %>
+
+# Bad
+<%= form_with(model: @user, local: true) do |f| %>
+  <div>Email:</div>
+  <%= f.email_field :email %>
+<% end %>
+```
+
+### Rails UJS Implementation
+```ruby
+# Good
+<%= link_to "Update", update_path, 
+    class: "btn",
+    data: { 
+      remote: true,
+      method: :patch,
+      confirm: "Are you sure?",
+      disable_with: "Updating..."
+    },
+    aria: { label: "Update user profile" } %>
+
+# Bad
+<%= link_to "Update", update_path, 
+    class: "btn",
+    onclick: "updateEverything()" %>
+```
+
+## Color and Contrast
+- Maintain minimum contrast ratios
+- Don't rely solely on color for information
+- Provide alternative text for images
+- Ensure text is readable
+- Test with color blindness simulators
+
+## Screen Reader Compatibility
+- Provide descriptive alt text
+- Use proper ARIA labels
+- Implement skip links
+- Ensure proper reading order
+- Test with screen readers
+
+## Testing Requirements
+- Automated accessibility testing
+- Manual keyboard testing
+- Screen reader testing
+- Color contrast testing
+- Focus management testing
+
+## Common Mistakes to Avoid
+- Not using Rails form helpers
+- Missing alt text
+- Poor color contrast
+- Inaccessible forms
+- Missing focus indicators
+
+## Validation Checklist
+- [ ] Semantic HTML implemented
+- [ ] ARIA attributes used correctly
+- [ ] Keyboard navigation works
+- [ ] Color contrast meets standards
+- [ ] Screen reader compatibility verified
+- [ ] Forms are accessible
+- [ ] Focus management implemented
+- [ ] Skip links provided

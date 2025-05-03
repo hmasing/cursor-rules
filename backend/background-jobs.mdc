@@ -1,0 +1,89 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Background and Delayed Job Processing Rules
+
+## When to Check These Rules
+- When implementing background tasks
+- When processing long-running operations
+- When handling asynchronous operations
+- When scheduling delayed jobs
+- When working with Sidekiq workers
+
+## Job Processing
+- Use Sidekiq exclusively (location: app/sidekiq)
+- Never use ActiveJob or app/jobs
+- Follow Sidekiq best practices
+- Implement proper error handling
+- Use appropriate retry strategies
+- Consider job priority and queue selection
+- Monitor job performance and queue sizes
+- Implement proper job timeouts
+- Handle job dependencies appropriately
+
+## Error Handling
+- Implement proper error handling in jobs
+- Use appropriate retry strategies
+- Log job failures with context
+- Handle job timeouts gracefully
+- Implement dead letter queues for failed jobs
+- Monitor job failure rates
+- Alert on critical job failures
+
+## Examples
+
+✅ Correct:
+```ruby
+# Proper Sidekiq worker
+class UserEmailWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :high_priority, retry: 3
+
+  def perform(user_id)
+    user = User.find(user_id)
+    UserMailer.welcome_email(user).deliver_now
+  rescue ActiveRecord::RecordNotFound => e
+    logger.error "Failed to send welcome email: #{e.message}"
+    raise
+  end
+end
+
+# Proper job scheduling
+UserEmailWorker.perform_async(user.id)
+UserEmailWorker.perform_in(1.hour, user.id)
+```
+
+❌ Incorrect:
+- Using ActiveJob instead of Sidekiq
+- Not handling errors properly
+- No retry strategy
+- Poor job organization
+- No proper logging
+- Missing job timeouts
+- No queue management
+
+## Common Mistakes to Avoid
+- Using ActiveJob instead of Sidekiq
+- Not implementing proper error handling
+- No retry strategy
+- Poor job organization
+- No proper logging
+- Missing job timeouts
+- No queue management
+- Not monitoring job performance
+- Not handling job dependencies
+- Not implementing dead letter queues
+
+## Validation Checklist
+- [ ] Sidekiq is used exclusively
+- [ ] Proper error handling is implemented
+- [ ] Appropriate retry strategies are in place
+- [ ] Jobs are properly organized
+- [ ] Proper logging is implemented
+- [ ] Job timeouts are set
+- [ ] Queue management is in place
+- [ ] Job performance is monitored
+- [ ] Job dependencies are handled
+- [ ] Dead letter queues are implemented

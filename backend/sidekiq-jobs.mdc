@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/workers/**/*,app/jobs/**/*,*.rb
+# @description: Sidekiq job implementation and configuration guidelines.
+
+# Sidekiq Jobs Guidelines
+
+### Sidekiq Job Rules
+
+#### When to Check These Rules
+- When creating new background jobs
+- When modifying existing jobs
+- When implementing job retries
+- When handling job errors
+
+#### Rules
+- Use Sidekiq exclusively (never use ActiveJob)
+- Location: app/sidekiq
+- Follow Sidekiq best practices
+- Implement proper error handling
+- Use appropriate retry strategies
+- Consider job idempotency
+- Handle job timeouts
+- Use proper job naming
+- Consider job priority
+
+#### Examples
+✅ Correct:
+```ruby
+class ProcessUserJob
+  include Sidekiq::Job
+  
+  sidekiq_options queue: :high, retry: 3
+  
+  def perform(user_id)
+    user = User.find(user_id)
+    # Process user
+  rescue ActiveRecord::RecordNotFound => e
+    Rails.logger.error("User not found: #{user_id}")
+    raise e
+  end
+end
+```
+
+❌ Incorrect:
+- Using ActiveJob
+- Not handling errors
+- No retry strategy
+- Not considering idempotency
+- Poor job naming
+- No queue specification
+
+#### Common Mistakes to Avoid
+- Using ActiveJob instead of Sidekiq
+- Not handling errors properly
+- No retry strategy
+- Not considering idempotency
+- Poor job organization
+- No proper logging
+
+#### Validation Checklist
+- [ ] Using Sidekiq (not ActiveJob)
+- [ ] Proper error handling
+- [ ] Appropriate retry strategy
+- [ ] Job is idempotent
+- [ ] Proper job naming
+- [ ] Queue specified
+- [ ] Timeout handling
+- [ ] Proper logging

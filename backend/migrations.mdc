@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: db/migrate/**/*,*.rb
+# @description: Database migration guidelines and best practices.
+
+# Migration Guidelines
+
+### Database Migration Rules
+
+#### When to Check These Rules
+- When creating new migrations
+- When modifying existing migrations
+- When adding or modifying database columns
+- When creating or modifying indexes
+
+#### Rules
+- Always use the Rails Rake task to generate migrations
+- Never manually create migration files
+- Use the format: `bin/rails generate migration [MigrationName] [column:type]`
+- Let Rails handle the timestamp and migration number
+- Include proper indexes for foreign keys
+- Use reversible migrations when possible
+- Add appropriate validations in models
+- Consider performance implications
+
+#### Examples
+✅ Correct:
+```bash
+bin/rails generate migration AddNameToUsers name:string
+bin/rails generate migration AddIndexToUsersEmail email:string:index
+```
+
+✅ Correct Migration:
+```ruby
+class AddNameToUsers < ActiveRecord::Migration[7.0]
+  def change
+    add_column :users, :name, :string
+    add_index :users, :email, unique: true
+  end
+end
+```
+
+❌ Incorrect:
+- Manually creating migration files
+- Not using proper column types
+- Missing indexes for foreign keys
+- Not making migrations reversible
+- Not considering performance
+
+#### Common Mistakes to Avoid
+- Manual migration file creation
+- Missing indexes
+- Not using proper column types
+- Not making migrations reversible
+- Not considering performance impact
+
+#### Validation Checklist
+- [ ] Using Rails generator
+- [ ] Proper column types
+- [ ] Appropriate indexes
+- [ ] Reversible migrations
+- [ ] Performance considerations
+- [ ] Model validations added

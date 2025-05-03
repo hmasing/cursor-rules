@@ -1,0 +1,79 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: agent
+# @description: Git commit message format and commands. Always loaded for context.
+
+# Git Commit Guidelines
+
+### Git Commit Rules
+
+#### When to Check These Rules
+- Before committing changes
+- When writing commit messages
+- When reviewing commits
+- When preparing for pull requests
+
+#### Rules
+##### Message Format
+- Format: `[Verb] [Brief description]` for each distinct action
+- Standard Verbs: Add, Fix, Update, Remove, Refactor
+- Description: Clear, concise, present tense
+- Use git diff to determine the changes
+- Each file change or major functional change should have its own action message
+- Multiple actions should be combined into a single line using commas
+- Order actions by their impact (major changes first)
+
+##### Command Rules
+- Non-destructive read-only commands (git status, cat, ls, etc.) can be executed automatically
+- Any command that modifies files, stages changes, or commits requires explicit approval
+- Always explain the purpose of the command before executing it
+- Always add all modified files when committing changes
+- Never selectively add files unless explicitly requested
+- Use `git add .` as the default command for staging changes
+
+#### Examples
+✅ Correct Messages:
+```
+[Add] Login feature, password reset functionality
+[Fix] Button alignment in login form
+[Refactor] Authentication service to use JWT
+[Update] User profile form validation
+[Remove] Deprecated API endpoint
+```
+
+✅ Multiple Actions:
+```
+[Add] New user profile page, profile image upload functionality
+[Refactor] User model to support profile images
+[Update] User controller to handle image uploads
+[Fix] Image validation in profile form
+[Remove] Old profile image storage method
+```
+
+❌ Incorrect:
+- "Fixed stuff"
+- "Updated things"
+- "Changes"
+- "WIP"
+- "More changes"
+- "Fix security issue" (too vague)
+- Using newlines in commit messages
+- Using \n for line breaks
+
+#### Common Mistakes to Avoid
+- Vague commit messages
+- Multiple unrelated changes in one commit
+- Not following the message format
+- Not explaining command purpose
+- Selective file addition without reason
+
+#### Validation Checklist
+- [ ] Message follows format
+- [ ] Changes are properly described
+- [ ] Multiple actions are combined correctly
+- [ ] Commands are explained
+- [ ] All files are added
+- [ ] No sensitive data included

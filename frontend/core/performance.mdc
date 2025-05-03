@@ -1,0 +1,95 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Frontend Performance Rules
+
+## Related Rules
+- @frontend-rules.mdc for general frontend guidelines
+- @frontend/core/state-management.mdc for state-related performance
+- @frontend/core/testing.mdc for performance testing
+
+## Overview
+This document defines the rules and best practices for maintaining optimal performance in Ruby on Rails frontend applications.
+
+## Performance Principles
+
+### 1. Asset Pipeline
+- Use proper asset precompilation
+- Implement proper asset organization
+- Use appropriate asset compression
+- Implement proper asset caching
+- Use CDN for static assets
+
+### 2. Caching Strategies
+- Implement Russian Doll caching
+- Use fragment caching
+- Implement proper cache keys
+- Use cache digests
+- Implement proper cache expiration
+
+### 3. Database Optimization
+- Use proper database indexing
+- Implement eager loading
+- Use counter caches
+- Implement proper database queries
+- Use database views where appropriate
+
+## Implementation Guidelines
+
+### Asset Pipeline
+```ruby
+# Good
+# config/initializers/assets.rb
+Rails.application.config.assets.precompile += %w( application.js application.css )
+
+# Bad
+# No asset precompilation configuration
+# No asset organization
+```
+
+### Caching Implementation
+```ruby
+# Good
+<% cache [@product, @user] do %>
+  <%= render @product %>
+<% end %>
+
+# Bad
+<% cache @product do %>
+  <%= render @product %>
+  <%= render @user %> # Mixed concerns
+<% end %>
+```
+
+## Performance Monitoring
+- Use New Relic or similar tools
+- Monitor database queries
+- Track response times
+- Monitor memory usage
+- Track cache hit rates
+
+## Testing Requirements
+- Load time testing
+- Database query testing
+- Cache effectiveness testing
+- Asset loading testing
+- Memory usage testing
+
+## Common Mistakes to Avoid
+- Not using proper caching
+- N+1 queries
+- Not precompiling assets
+- Not using CDN
+- Not implementing proper database indexing
+
+## Validation Checklist
+- [ ] Asset pipeline configured
+- [ ] Caching implemented
+- [ ] Database optimized
+- [ ] Performance monitoring in place
+- [ ] Tests cover performance scenarios
+- [ ] Response times meet targets
+- [ ] Memory usage optimized
+- [ ] Cache hit rates monitored

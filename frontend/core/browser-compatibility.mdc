@@ -1,0 +1,121 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Frontend Browser Compatibility Rules
+
+## Related Rules
+- @frontend/core/performance.mdc for performance optimization
+- @frontend/core/accessibility.mdc for cross-browser accessibility
+- @frontend/core/error-handling.mdc for graceful degradation
+
+## Core Principles
+1. **Browser Support**
+   - Define supported browsers
+   - Set minimum versions
+   - Handle unsupported browsers
+   - Test across browsers
+   - Monitor usage statistics
+
+2. **Implementation Guidelines**
+   - Use feature detection
+   - Implement polyfills
+   - Handle vendor prefixes
+   - Support progressive enhancement
+   - Implement graceful degradation
+
+## Browser Support Matrix
+- Chrome (last 2 versions)
+- Firefox (last 2 versions)
+- Safari (last 2 versions)
+- Edge (last 2 versions)
+- iOS Safari (last 2 versions)
+- Android Chrome (last 2 versions)
+
+## Implementation Patterns
+
+### Feature Detection
+```javascript
+// Example: Feature detection
+if ('IntersectionObserver' in window) {
+  // Use IntersectionObserver
+} else {
+  // Fallback implementation
+}
+```
+
+### Polyfills
+```javascript
+// Example: Polyfill usage
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+```
+
+### Vendor Prefixes
+```css
+/* Example: Vendor prefixes */
+.selector {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+```
+
+## CSS Compatibility
+- Use autoprefixer
+- Handle flexbox fallbacks
+- Support grid layouts
+- Handle custom properties
+- Support media queries
+
+## JavaScript Compatibility
+- Use Babel for transpilation
+- Handle ES6+ features
+- Support async/await
+- Handle modules
+- Support promises
+
+## HTML Compatibility
+- Use semantic HTML
+- Support custom elements
+- Handle form validation
+- Support web components
+- Handle shadow DOM
+
+## Performance Considerations
+- Optimize polyfills
+- Minimize bundle size
+- Handle loading strategies
+- Support code splitting
+- Implement lazy loading
+
+## Testing Requirements
+- Test across browsers
+- Verify feature support
+- Check polyfills
+- Test fallbacks
+- Verify performance
+- Check accessibility
+
+## Common Mistakes to Avoid
+- Not defining browser support
+- Not using feature detection
+- Not implementing polyfills
+- Not handling vendor prefixes
+- Not testing across browsers
+- Not monitoring usage
+- Not optimizing performance
+- Not supporting fallbacks
+- Not checking accessibility
+- Not documenting requirements
+
+## Tools and Resources
+- BrowserStack for testing
+- Can I Use for compatibility
+- Babel for transpilation
+- Autoprefixer for CSS
+- Core-js for polyfills
+- Modernizr for detection

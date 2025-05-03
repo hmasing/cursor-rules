@@ -1,0 +1,202 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# @attach: auto
+# @glob: public/swagger.yaml,public/v*/openapi.yaml,docs/api/**/*,app/controllers/api/**/*
+# @description: API documentation standards for OpenAPI/Swagger specifications.
+
+# API Documentation Standards
+
+## Related Rules
+- @backend-rules.mdc for backend implementation
+- @frontend-rules.mdc for frontend integration
+- @workflow-rules.mdc for development workflow
+
+## Module References
+- @backend/api-design.mdc for API implementation details
+- @workflow/documentation.mdc for general documentation practices
+
+## When to Check These Rules
+- When creating new API endpoints
+- When modifying existing endpoints
+- Before API version updates
+- During code review of API changes
+- When generating client SDKs
+- When updating API documentation
+
+## OpenAPI/Swagger Documentation Standards
+
+### File Organization
+- Keep OpenAPI specification in `public/swagger.yaml`
+- Version specifications in `public/v{version}/openapi.yaml`
+- Generate client SDKs in `docs/api/sdks/`
+- Store examples in `docs/api/examples/`
+
+### Specification Structure
+```yaml
+openapi: 3.0.3
+info:
+  title: API Title
+  version: 1.0.0
+  description: |
+    Comprehensive API documentation
+    with detailed examples
+  contact:
+    name: API Team
+    email: api@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: https://staging-api.example.com/v1
+    description: Staging server
+```
+
+### Required Sections
+1. **Info**
+   - Title
+   - Version
+   - Description
+   - Contact information
+   - License
+
+2. **Servers**
+   - Production URL
+   - Staging URL
+   - Development URL (optional)
+
+3. **Security**
+   - Authentication schemes
+   - Authorization requirements
+   - API keys
+   - OAuth flows
+
+4. **Paths**
+   - Resource endpoints
+   - HTTP methods
+   - Parameters
+   - Request bodies
+   - Responses
+   - Error codes
+
+5. **Components**
+   - Schemas
+   - Security schemes
+   - Parameters
+   - Request bodies
+   - Responses
+   - Headers
+   - Examples
+
+### Documentation Requirements
+
+#### Endpoint Documentation
+```yaml
+paths:
+  /users:
+    get:
+      summary: List all users
+      description: |
+        Returns a paginated list of users.
+        Supports filtering and sorting.
+      operationId: listUsers
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per_page'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+```
+
+#### Schema Documentation
+```yaml
+components:
+  schemas:
+    User:
+      type: object
+      description: User object
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier
+        email:
+          type: string
+          format: email
+          description: User's email address
+```
+
+### Best Practices
+
+1. **Versioning**
+   - Use semantic versioning
+   - Document breaking changes
+   - Maintain backward compatibility
+   - Include deprecation notices
+
+2. **Examples**
+   - Provide request/response examples
+   - Include error scenarios
+   - Show authentication flows
+   - Demonstrate pagination
+
+3. **Validation**
+   - Use JSON Schema validation
+   - Define required fields
+   - Specify data types
+   - Include format constraints
+
+4. **Security**
+   - Document authentication methods
+   - Define authorization scopes
+   - Include security schemes
+   - Specify rate limits
+
+### Documentation Checklist
+- [ ] OpenAPI specification is valid
+- [ ] All endpoints are documented
+- [ ] Request/response schemas are defined
+- [ ] Examples are provided
+- [ ] Error responses are documented
+- [ ] Authentication is described
+- [ ] Versioning is clear
+- [ ] Breaking changes are noted
+- [ ] Client SDKs are generated
+- [ ] Documentation is up to date
+
+### Tools and Automation
+- Use Swagger UI for interactive documentation
+- Implement automated validation
+- Generate client SDKs automatically
+- Include documentation in CI/CD pipeline
+- Monitor API changes
+- Track documentation coverage
+
+### Maintenance
+- Review documentation monthly
+- Update with new features
+- Remove deprecated endpoints
+- Validate examples
+- Check links and references
+- Update client SDKs
+
+### Related Resources
+- [OpenAPI Specification](mdc:https:/spec.openapis.org/oas/latest.html)
+- [Swagger Documentation](mdc:https:/swagger.io/docs)
+- [API Design Guide](mdc:https:/google.aip.dev)
+- [REST API Best Practices](mdc:https:/restfulapi.net)

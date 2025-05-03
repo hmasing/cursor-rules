@@ -1,0 +1,88 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/models/**/*,db/**/*,*.rb
+# @description: Database management and optimization guidelines.
+
+# Database Guidelines
+
+## When to Check These Rules
+- When creating or modifying database schemas
+- When writing database queries
+- When implementing database optimizations
+- When handling database migrations
+- When working with ActiveRecord models
+
+## Migrations
+- Always use the Rails Rake task to generate migrations
+- Never manually create migration files
+- Use the format: `bin/rails generate migration [MigrationName] [column:type]`
+- Let Rails handle the timestamp and migration number
+- Example: `bin/rails generate migration AddNameToUsers name:string`
+- Include proper indexes for foreign keys
+- Use reversible migrations when possible
+- Add appropriate constraints (e.g., null: false, default: value)
+- Document complex migrations with comments
+
+## Query Optimization
+- Use includes for eager loading
+- Avoid N+1 queries
+- Follow ActiveRecord best practices
+- Use appropriate indexes
+- Optimize complex queries
+- Use counter caches when needed
+- Consider using database views for complex queries
+- Implement proper database constraints
+- Use database transactions for atomic operations
+
+## Examples
+
+✅ Correct:
+```ruby
+# Proper eager loading
+User.includes(:posts).where(active: true)
+
+# Using counter cache
+class Post < ApplicationRecord
+  belongs_to :user, counter_cache: true
+end
+
+# Proper migration
+class AddNameToUsers < ActiveRecord::Migration[7.0]
+  def change
+    add_column :users, :name, :string, null: false
+    add_index :users, :name
+  end
+end
+```
+
+❌ Incorrect:
+- Manual migration file creation
+- Missing indexes on foreign keys
+- N+1 queries
+- No eager loading
+- Missing database constraints
+- Improper transaction usage
+
+## Common Mistakes to Avoid
+- Not using eager loading
+- Creating N+1 queries
+- Missing database indexes
+- Not using counter caches
+- Improper migration structure
+- Missing database constraints
+- Not using transactions when needed
+- Poor query optimization
+
+## Validation Checklist
+- [ ] Migrations follow Rails conventions
+- [ ] Proper indexes are in place
+- [ ] N+1 queries are eliminated
+- [ ] Eager loading is used appropriately
+- [ ] Counter caches are implemented where needed
+- [ ] Database constraints are properly set
+- [ ] Complex queries are optimized
+- [ ] Transactions are used for atomic operations

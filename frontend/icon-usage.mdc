@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+### Icon Usage Rules
+
+#### When to Check These Rules
+- When adding or modifying icons
+- When creating new components with icons
+- When implementing custom icons
+
+#### Rules
+- Use the `humicon` helper for all icons
+- Use heroicons as the base icon set
+- Custom icons go in app/assets/images/icons
+- Icon helper parameters:
+  - name (required): The icon identifier
+  - class: Tailwind classes for sizing/styling
+  - size: Optional size override
+  - aria: Accessibility attributes
+
+#### Examples
+✅ Correct:
+```haml
+= humicon 'trash', class: 'h-4 w-4', aria: { label: 'Delete' }
+= humicon 'check', class: 'h-5 w-5 text-green-500'
+```
+
+❌ Incorrect:
+- Using raw SVGs
+- Not providing aria labels
+- Inconsistent sizing
+- Not using the humicon helper
+
+#### Common Mistakes to Avoid
+- Using raw SVGs instead of humicon helper
+- Missing accessibility attributes
+- Inconsistent icon sizing
+- Not following the icon naming convention
+
+#### Validation Checklist
+- [ ] Using humicon helper
+- [ ] Proper aria labels provided
+- [ ] Consistent sizing with Tailwind classes
+- [ ] Custom icons in correct directory
+- [ ] Following icon naming conventions

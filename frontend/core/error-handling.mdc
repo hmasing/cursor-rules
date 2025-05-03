@@ -1,0 +1,127 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Frontend Error Handling Rules
+
+## Related Rules
+- @frontend/core/security.mdc for security-related error handling
+- @frontend/core/performance.mdc for performance impact of error handling
+- @frontend/core/accessibility.mdc for error messaging accessibility
+
+## Core Principles
+1. **User Experience**
+   - Provide clear, actionable error messages
+   - Use appropriate error message severity levels (info, warning, error)
+   - Include recovery steps when possible
+   - Maintain consistent error message styling
+   - Ensure error messages are accessible
+
+2. **Error Types**
+   - Network errors (API failures, timeouts)
+   - Validation errors (form inputs, data constraints)
+   - State errors (invalid application state)
+   - Runtime errors (JavaScript exceptions)
+   - Authentication/Authorization errors
+
+3. **Implementation Guidelines**
+   - Use centralized error handling
+   - Implement proper error boundaries
+   - Log errors appropriately
+   - Handle errors gracefully
+   - Provide fallback UI states
+
+## Error Handling Patterns
+
+### Network Errors
+```javascript
+// Example: API error handling
+try {
+  const response = await fetch('/api/endpoint');
+  if (!response.ok) {
+    throw new ApiError(response.status, await response.json());
+  }
+  return await response.json();
+} catch (error) {
+  if (error instanceof ApiError) {
+    showUserFriendlyError(error.message);
+  } else {
+    showGenericError();
+  }
+  logError(error);
+}
+```
+
+### Form Validation
+```javascript
+// Example: Form validation error handling
+const validateForm = (formData) => {
+  const errors = {};
+  if (!formData.email) {
+    errors.email = 'Email is required';
+  } else if (!isValidEmail(formData.email)) {
+    errors.email = 'Please enter a valid email address';
+  }
+  return errors;
+};
+```
+
+### Error Boundaries
+```javascript
+// Example: React error boundary
+class ErrorBoundary extends React.Component {
+  componentDidCatch(error, errorInfo) {
+    logError(error, errorInfo);
+    this.setState({ hasError: true });
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <ErrorFallback />;
+    }
+    return this.props.children;
+  }
+}
+```
+
+## Error Logging
+- Log all errors to appropriate monitoring service
+- Include relevant context (user ID, action, timestamp)
+- Categorize errors by severity
+- Implement proper error tracking
+- Monitor error rates and patterns
+
+## Error Recovery
+- Provide clear recovery steps
+- Implement automatic retry for transient errors
+- Allow users to report errors
+- Maintain application state where possible
+- Provide fallback content
+
+## Accessibility Considerations
+- Ensure error messages are announced by screen readers
+- Use appropriate ARIA attributes
+- Maintain keyboard navigation
+- Provide error summaries
+- Use proper color contrast
+
+## Testing Requirements
+- Test error scenarios
+- Verify error messages
+- Check error recovery
+- Test error boundaries
+- Verify logging
+- Test accessibility
+
+## Common Mistakes to Avoid
+- Not handling errors at all
+- Using console.error only
+- Not providing user feedback
+- Not logging errors properly
+- Not implementing error boundaries
+- Not testing error scenarios
+- Not considering accessibility
+- Not providing recovery options
+- Not maintaining state
+- Not categorizing errors

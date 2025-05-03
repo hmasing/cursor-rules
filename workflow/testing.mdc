@@ -1,0 +1,79 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: agent
+# @description: Testing best practices and guidelines. Always loaded for context.
+
+# Testing Guidelines
+
+### Testing Best Practices
+
+## Testing Types
+- Unit Tests
+- Integration Tests
+- System Tests
+- Performance Tests
+- Security Tests
+- Usability Tests
+
+## Testing Checklist
+- [ ] Tests cover all new functionality
+- [ ] Edge cases are tested
+- [ ] Error conditions are handled
+- [ ] Performance benchmarks are set
+- [ ] Security vulnerabilities are checked
+- [ ] Tests are independent
+- [ ] Tests are repeatable
+- [ ] Test environment is isolated
+- [ ] Test data is properly managed
+
+## Test Organization
+- Group tests by feature
+- Separate test files by type
+- Use descriptive test names
+- Follow consistent naming patterns
+- Document test dependencies
+- Maintain test data separately
+
+## Test Implementation
+- Write tests before code (TDD)
+- Use appropriate assertions
+- Mock external dependencies
+- Clean up test data
+- Handle test failures gracefully
+- Document test setup
+- Use test fixtures when needed
+
+## Test Coverage
+- Aim for 80%+ coverage
+- Focus on critical paths
+- Test error conditions
+- Verify edge cases
+- Test integration points
+- Validate security measures
+
+## Test Maintenance
+- Update tests with code changes
+- Remove obsolete tests
+- Refactor test code
+- Document test changes
+- Review test coverage
+- Optimize test performance
+
+## Test Environment
+- Isolate test environments
+- Use consistent configurations
+- Manage test data properly
+- Document environment setup
+- Automate environment creation
+- Clean up after tests
+
+## Test Documentation
+- Document test purpose
+- Explain test setup
+- List dependencies
+- Document assumptions
+- Include examples
+- Update with changes

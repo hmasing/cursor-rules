@@ -1,0 +1,82 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: agent
+# @description: Workflow checklists and guidelines. Always loaded for context.
+
+# Workflow Development Checklists
+
+## Development Process Checklist
+### Before Making Changes
+- [ ] Check git status
+- [ ] Review relevant rule files
+- [ ] List files to be modified
+- [ ] Get confirmation before proceeding
+- [ ] Check for sensitive data handling requirements
+
+### During Changes
+- [ ] Follow established patterns
+- [ ] Document rationale for deviations
+- [ ] Review existing code before adding new patterns
+- [ ] Handle sensitive data appropriately
+- [ ] Write tests for new functionality
+
+### After Making Changes
+- [ ] Check git status
+- [ ] List all modified files
+- [ ] Verify no sensitive data is included
+- [ ] Run tests
+- [ ] Propose commit message
+- [ ] Get confirmation
+- [ ] Execute commit
+- [ ] Verify success
+
+## Git Workflow Checklist
+- [ ] Check git status
+- [ ] Review changes
+- [ ] Write clear commit message
+- [ ] Follow commit message format
+- [ ] Check for sensitive data
+- [ ] Run tests
+- [ ] Verify no merge conflicts
+- [ ] Update documentation if needed
+- [ ] Get code review approval
+- [ ] Verify CI/CD pipeline
+
+## Code Review Checklist
+- [ ] Review code style
+- [ ] Check for common mistakes
+- [ ] Verify error handling
+- [ ] Check documentation
+- [ ] Review test coverage
+- [ ] Check performance
+- [ ] Verify security
+- [ ] Review accessibility
+- [ ] Check code organization
+- [ ] Verify naming conventions
+
+## Deployment Checklist
+- [ ] Verify all tests pass
+- [ ] Check environment variables
+- [ ] Verify database migrations
+- [ ] Check service dependencies
+- [ ] Review monitoring setup
+- [ ] Verify backup procedures
+- [ ] Check deployment documentation
+- [ ] Review rollback plan
+- [ ] Verify security measures
+- [ ] Test deployment in staging
+
+## Documentation Update Checklist
+- [ ] Review existing documentation
+- [ ] Update API documentation
+- [ ] Update README files
+- [ ] Add usage examples
+- [ ] Document configuration
+- [ ] Update setup instructions
+- [ ] Add troubleshooting guide
+- [ ] Update changelog
+- [ ] Verify all links work
+- [ ] Check for outdated information

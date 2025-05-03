@@ -1,0 +1,110 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Frontend Development Checklists
+
+## Development Workflow Checklists
+
+### Before Starting Development
+- [ ] Review relevant module rules
+- [ ] Review core rules for:
+  - [ ] State management
+  - [ ] Performance
+  - [ ] Accessibility
+  - [ ] Testing
+  - [ ] Security
+  - [ ] Error handling
+  - [ ] Internationalization
+  - [ ] Browser compatibility
+
+### During Development
+- [ ] Follow component structure rules (@frontend/component-structure.mdc)
+- [ ] Use proper HAML syntax (@frontend/haml-attributes.mdc)
+- [ ] Implement icons correctly (@frontend/icon-usage.mdc)
+- [ ] Follow Tailwind conventions (@frontend/tailwind-conventions.mdc)
+- [ ] Follow all core rules for:
+  - [ ] State management
+  - [ ] Performance
+  - [ ] Accessibility
+  - [ ] Testing
+  - [ ] Security
+  - [ ] Error handling
+  - [ ] Internationalization
+  - [ ] Browser compatibility
+
+### After Development
+- [ ] Verify no common mistakes
+- [ ] Ensure proper documentation
+- [ ] Test all states and edge cases
+
+## Component Development Checklists
+
+### New Component Checklist
+- [ ] Check for existing similar components
+- [ ] Follow component naming conventions
+- [ ] Implement proper directory structure
+- [ ] Separate presentation from logic
+- [ ] Add proper documentation
+- [ ] Include usage examples
+- [ ] Add accessibility attributes
+- [ ] Test responsive behavior
+- [ ] Add proper error handling
+- [ ] Include loading states
+
+### Template Modification Checklist
+- [ ] Check HAML syntax
+- [ ] Verify Tailwind class usage
+- [ ] Ensure proper indentation
+- [ ] Check for accessibility
+- [ ] Verify responsive behavior
+- [ ] Test all states (loading, error, empty)
+- [ ] Check for performance impact
+- [ ] Verify proper data loading
+- [ ] Test edge cases
+
+### Style Update Checklist
+- [ ] Use Tailwind utilities
+- [ ] Follow mobile-first approach
+- [ ] Check for existing similar styles
+- [ ] Document custom classes
+- [ ] Test responsive behavior
+- [ ] Verify browser compatibility
+- [ ] Check for performance impact
+- [ ] Test dark mode if applicable
+
+### Icon Implementation Checklist
+- [ ] Use humicon helper
+- [ ] Add proper aria labels
+- [ ] Set appropriate size
+- [ ] Check for existing similar icons
+- [ ] Verify accessibility
+- [ ] Test hover/focus states
+- [ ] Check color contrast
+
+### Component Refactor Checklist
+- [ ] Document current behavior
+- [ ] Check for dependencies
+- [ ] Plan migration strategy
+- [ ] Update tests
+- [ ] Verify accessibility
+- [ ] Test all states
+- [ ] Check performance
+- [ ] Update documentation
+- [ ] Test edge cases
+
+### Validation Checklist
+- [ ] All relevant module rules followed
+- [ ] No common mistakes present
+- [ ] Documentation complete
+- [ ] Tests written and passing
+- [ ] State management implemented correctly
+- [ ] Performance optimizations in place
+- [ ] Accessibility requirements met
+- [ ] Test coverage meets requirements
+- [ ] Security requirements met
+- [ ] CSRF protection implemented
+- [ ] XSS prevention in place
+- [ ] Data protection implemented
+- [ ] All core rules implemented and validated

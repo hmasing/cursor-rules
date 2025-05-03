@@ -1,0 +1,161 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# @attach: auto
+# @glob: app/**/*,lib/**/*,*.rb,*.rake
+# @description: Ruby on Rails best practices and anti-patterns.
+
+# Best Practices Guidelines
+
+# Backend Best Practices and Anti-Patterns
+
+## When to Check These Rules
+- When reviewing code
+- When implementing new features
+- When refactoring existing code
+- When conducting code reviews
+- When mentoring other developers
+
+## Code Organization Anti-Patterns
+- Using positional parameters instead of named parameters
+- Mixing business logic in controllers
+- Not following single responsibility principle
+- Creating god objects (classes that do too much)
+- Not using proper namespaces
+- Inconsistent code organization
+- Poor method naming
+- Not documenting complex methods
+
+## Database Anti-Patterns
+- Creating N+1 queries
+- Not using eager loading when needed
+- Missing database indexes
+- Not using proper database constraints
+- Poor transaction management
+- Not using counter caches when needed
+- Not implementing proper validation
+- Not using appropriate caching strategies
+
+## Background Jobs Anti-Patterns
+- Using ActiveJob instead of Sidekiq
+- Not handling job errors properly
+- No retry strategy
+- Poor job organization
+- No proper logging
+- Missing job timeouts
+- No queue management
+- Not monitoring job performance
+
+## API Design Anti-Patterns
+- Not following RESTful conventions
+- Inconsistent error responses
+- No versioning strategy
+- Poor documentation
+- No authentication
+- Wrong status codes
+- No rate limiting
+- No caching strategy
+
+## Best Practices
+
+### Code Organization
+- Use named parameters for clarity
+- Keep methods small and focused
+- Follow single responsibility principle
+- Use proper namespaces
+- Maintain consistent code organization
+- Use clear, descriptive method names
+- Document complex methods
+- Use appropriate design patterns
+
+### Database
+- Use includes for eager loading
+- Implement proper indexes
+- Use database constraints
+- Manage transactions properly
+- Use counter caches when needed
+- Implement proper validation
+- Use appropriate caching
+- Monitor query performance
+
+### Background Jobs
+- Use Sidekiq exclusively
+- Implement proper error handling
+- Use appropriate retry strategies
+- Organize jobs properly
+- Implement proper logging
+- Set job timeouts
+- Manage queues properly
+- Monitor job performance
+
+### API Design
+- Follow RESTful conventions
+- Use proper HTTP methods
+- Implement consistent error responses
+- Use versioning
+- Document APIs properly
+- Handle authentication
+- Use proper status codes
+- Implement rate limiting
+- Use appropriate caching
+
+## Examples
+
+✅ Correct:
+```ruby
+# Using named parameters
+def create_user(name:, email:, role: :user)
+  # ...
+end
+
+# Proper eager loading
+User.includes(:posts).where(active: true)
+
+# Proper job organization
+class UserEmailWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :high_priority, retry: 3
+
+  def perform(user_id)
+    # ...
+  end
+end
+
+# RESTful API endpoint
+module Api
+  module V1
+    class UsersController < ApplicationController
+      def show
+        user = User.find(params[:id])
+        render json: UserSerializer.new(user)
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: 'User not found' }, status: :not_found
+      end
+    end
+  end
+end
+```
+
+❌ Incorrect:
+- Positional parameters
+- N+1 queries
+- Business logic in controllers
+- ActiveJob usage
+- Poor error handling
+- No proper validation
+- No caching strategy
+- Not following RESTful conventions
+
+## Validation Checklist
+- [ ] Code follows RuboCop conventions
+- [ ] Database queries are optimized
+- [ ] Background jobs use Sidekiq
+- [ ] Error handling is implemented
+- [ ] Business logic is properly separated
+- [ ] API endpoints are properly documented
+- [ ] Proper validation is in place
+- [ ] Appropriate caching is used
+- [ ] Code is well-documented
+- [ ] Performance is considered
